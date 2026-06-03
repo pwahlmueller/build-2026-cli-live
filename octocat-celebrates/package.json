@@ -1,0 +1,16 @@
+{
+  "name": "octocat-celebrates",
+  "version": "1.0.0",
+  "description": "An always-on-top Octocat that celebrates your git lifecycle events.",
+  "main": "src/main.js",
+  "scripts": {
+    "start": "electron .",
+    "install-hooks": "node scripts/install-hooks.js",
+    "uninstall-hooks": "node scripts/uninstall-hooks.js"
+  },
+  "keywords": ["octocat", "git", "hooks", "electron", "celebrate"],
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^31.0.0"
+  }
+}
