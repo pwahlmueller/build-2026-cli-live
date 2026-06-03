@@ -1,1 +1,67 @@
 /* Goblin mode (#44) styles. Owner: goblin feature agent. Allowed file: this file only. */
+
+#octocat.goblin #cat-body {
+  filter: sepia(1) saturate(3.2) hue-rotate(52deg) brightness(0.82) contrast(1.18);
+}
+
+#octocat.goblin .goblin-overlay {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  filter: drop-shadow(0 3px 2px rgba(0, 0, 0, 0.35));
+}
+
+#octocat.goblin .goblin-ear {
+  fill: #68b84f;
+  stroke: #214d22;
+  stroke-width: 4;
+  stroke-linejoin: round;
+}
+
+#octocat.goblin .goblin-ear-left {
+  transform-origin: 38px 58px;
+  transform: rotate(-8deg);
+}
+
+#octocat.goblin .goblin-ear-right {
+  transform-origin: 122px 58px;
+  transform: rotate(8deg);
+}
+
+#octocat.goblin .goblin-hood {
+  fill: #4b245f;
+  opacity: 0.95;
+  stroke: #24112f;
+  stroke-width: 4;
+  stroke-linejoin: round;
+}
+
+#octocat.goblin .goblin-hood-patch {
+  fill: #7a3b8f;
+  opacity: 0.9;
+  stroke: #24112f;
+  stroke-width: 2;
+  stroke-linejoin: round;
+}
+
+#octocat.goblin .goblin-eye-glow {
+  fill: #cbff4d;
+  opacity: 0.28;
+  filter: drop-shadow(0 0 5px #cbff4d);
+}
+
+#octocat.goblin .goblin-grin {
+  fill: none;
+  stroke: #f7ffe8;
+  stroke-width: 3;
+  stroke-linecap: round;
+}
+
+#octocat.goblin .goblin-tooth {
+  fill: #fff7cf;
+  stroke: #d7c986;
+  stroke-width: 1;
+  stroke-linejoin: round;
+}
