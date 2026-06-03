@@ -83,3 +83,6 @@ octocat-celebrates/
     install-hooks.js     # wire up .git/hooks/*
     uninstall-hooks.js   # remove them cleanly
 ```
+
+## Demo
+Live at Build 2026 🐙
