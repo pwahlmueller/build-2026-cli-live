@@ -1,0 +1,6 @@
+/*
+ * Slower animations (#56). Owner: timing feature agent.
+ * Allowed file: features/timing.css ONLY.
+ * Slow every animation by overriding the --octo-dur-* custom properties on :root.
+ * Do not edit keyframes or per-event rules; only override the duration variables.
+ */

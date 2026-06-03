@@ -1,0 +1,7 @@
+/*
+ * Visibility polish (#54/#50/#34). Owner: visibility feature agent.
+ * Allowed file: features/visibility.css ONLY.
+ * Make the cat visible on dark windows: set --octo-opacity (semi-transparent body)
+ * and --octo-outline (a drop-shadow() filter acting as an outline) on :root or #octocat.
+ * Write ONLY these variables; do not restyle the SVG directly.
+ */

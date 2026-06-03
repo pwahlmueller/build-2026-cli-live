@@ -1,5 +1,24 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
+/*
+ * CSS-variable contracts (Phase 0). Feature modules override ONLY their own vars:
+ *   timing      -> --octo-dur-*          (features/timing.css)
+ *   visibility  -> --octo-opacity / --octo-outline / --octo-shadow (features/visibility.css)
+ *   eyes        -> --pupil-x / --pupil-y (features/eyes.js, via api.setCssVar on #octocat)
+ * Do not hard-code these values in feature files; set the variables instead.
+ */
+:root {
+  --octo-dur-breathe: 3s;
+  --octo-dur-bounce: 0.7s;
+  --octo-dur-spin: 1s;
+  --octo-dur-rocket: 0.9s;
+  --octo-dur-look: 0.8s;
+  --octo-dur-dizzy: 1s;
+  --octo-opacity: 1;
+  --octo-outline: none;
+  --octo-shadow: drop-shadow(0 6px 8px rgba(0, 0, 0, 0.35));
+}
+
 html, body {
   width: 100%;
   height: 100%;
@@ -22,8 +41,18 @@ html, body {
 #octocat {
   position: relative;
   transform-origin: 50% 80%;
-  filter: drop-shadow(0 6px 8px rgba(0, 0, 0, 0.35));
+  opacity: var(--octo-opacity);
+  filter: var(--octo-outline) var(--octo-shadow);
   z-index: 2;
+}
+
+/* Overlay layer for feature add-ons (e.g. goblin hat/ears). Non-interactive,
+   sits above the SVG and is centered on the cat. */
+#overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 3;
 }
 
 #close {
@@ -82,9 +111,14 @@ html, body {
   0%, 100% { transform: translateY(0) scale(1); }
   50% { transform: translateY(-3px) scale(1.01); }
 }
-#octocat.idle { animation: breathe 3s ease-in-out infinite; }
+#octocat.idle { animation: breathe var(--octo-dur-breathe) ease-in-out infinite; }
 
-.pupil { transition: transform 0.3s; }
+/* Pupils compose their position from --pupil-x/--pupil-y so the eyes feature can
+   move them without touching transforms elsewhere. Core owns blink (on the eyes). */
+.pupil {
+  transition: transform 0.15s ease-out;
+  transform: translate(var(--pupil-x, 0px), var(--pupil-y, 0px));
+}
 #octocat.blink #eye-left, #octocat.blink #eye-right { transform: scaleY(0.1); transform-origin: center; }
 
 /* ---- Commit: bounce ---- */
@@ -95,7 +129,7 @@ html, body {
   70% { transform: translateY(-12px) scale(1.02); }
   100% { transform: translateY(0) scale(1); }
 }
-#octocat.commit { animation: bounce 0.7s ease-out 2; }
+#octocat.commit { animation: bounce var(--octo-dur-bounce) ease-out 2; }
 
 /* ---- Merge: party spin ---- */
 @keyframes spin {
@@ -103,7 +137,7 @@ html, body {
   50% { transform: rotate(360deg) scale(1.15); }
   100% { transform: rotate(720deg) scale(1); }
 }
-#octocat.merge { animation: spin 1s ease-in-out; }
+#octocat.merge { animation: spin var(--octo-dur-spin) ease-in-out; }
 
 /* ---- Push: rocket lift ---- */
 @keyframes rocket {
@@ -111,7 +145,7 @@ html, body {
   30% { transform: translateY(-10px) rotate(-3deg); }
   100% { transform: translateY(-70px) rotate(4deg); opacity: 0.85; }
 }
-#octocat.push { animation: rocket 0.9s ease-in forwards; }
+#octocat.push { animation: rocket var(--octo-dur-rocket) ease-in forwards; }
 
 /* ---- Checkout: look around ---- */
 @keyframes look {
@@ -119,7 +153,7 @@ html, body {
   25% { transform: rotate(-10deg); }
   75% { transform: rotate(10deg); }
 }
-#octocat.checkout { animation: look 0.8s ease-in-out 2; }
+#octocat.checkout { animation: look var(--octo-dur-look) ease-in-out 2; }
 
 /* ---- Rewrite: dizzy wobble ---- */
 @keyframes dizzy {
@@ -130,7 +164,7 @@ html, body {
   80% { transform: rotate(8deg) skewX(-4deg); }
   100% { transform: rotate(0) scale(1); }
 }
-#octocat.rewrite { animation: dizzy 1s ease-in-out; }
+#octocat.rewrite { animation: dizzy var(--octo-dur-dizzy) ease-in-out; }
 
 /* ---- Confetti ---- */
 #confetti {
